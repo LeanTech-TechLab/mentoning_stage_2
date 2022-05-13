@@ -1,0 +1,20 @@
+<div class="favorites">
+  <h2>Favorites Show</h2>
+  <div class="favorites__show" *ngFor="let show of favorites; let i = index">
+    <div class="favorites__number">#{{ i }}</div>
+    <div class="favorites__title">
+      <span class="favorites__tittle-text">Title: </span>{{ show.Title }}
+    </div>
+    <div class="favorites__type">
+      <span class="favorites__type-text">Type: </span>{{ show.Type }}
+    </div>
+    <div class="favorites__year">
+      <span class="favorites__year-text">Year: </span>{{ show.Year }}
+    </div>
+    <div class="favorites__action">
+      <mat-icon class="favorites__delete" (click)="removeFavorite(i)"
+        >delete</mat-icon
+      >
+    </div>
+  </div>
+</div>

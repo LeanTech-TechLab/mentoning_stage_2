@@ -1,0 +1,27 @@
+.favorites {
+
+  &__show{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+  }
+  &__number{
+
+  }
+  &__title{
+
+  }
+  &__type{
+
+  }
+  &__year{
+
+  }
+  &__tittle-text, &__type-text, &__year-text{
+    font-weight: bold;
+    color: red;
+  }
+  &__delete {
+    cursor: pointer;
+  }
+}
