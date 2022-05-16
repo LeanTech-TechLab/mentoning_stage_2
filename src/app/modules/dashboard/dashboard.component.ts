@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
 import { MoviesService } from "@app-services/movies.service";
-import { MovieInterface } from "@app-models/movie.model";
+import { MovieInterface, MovieListResponse } from "@app-models/movie.model";
+
 @Component({
   selector: "app-dashboard",
   templateUrl: "./dashboard.component.html",
@@ -16,15 +17,16 @@ export class DashboardComponent {
   }
 
   searchMovie(movieTitle: string) {
-    this.searchingMovie = true;
+    // this.searchingMovie = true;
     this.moviesService.getMovieList(movieTitle).subscribe(
-      (result) => {
+      (result: MovieListResponse) => {
+        console.log("result", result);
         if (result.Response) {
           this.movieList = result.Search;
         } else {
           alert("too many results, write more!");
         }
-        this.searchingMovie = false;
+        // this.searchingMovie = false;
       },
       () => (this.searchingMovie = false)
     );

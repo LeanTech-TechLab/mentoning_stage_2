@@ -53,7 +53,6 @@ export class MoviesTableComponent implements OnInit, OnChanges {
     if (changes.movieList) {
       this.dataSource = changes.movieList.currentValue;
       this.dataSource.forEach((element) => {
-        console.log("element", element);
         this.getMovieList.push(this.addMovie(element));
       });
     }
