@@ -25,6 +25,7 @@ export class MoviesTableComponent implements OnInit, OnChanges {
     this.dataSource = [];
     this.movieList = [];
     this.movieForm = this.fb.group({
+      title: [""],
       movies: this.fb.array([]),
     });
   }
@@ -60,5 +61,14 @@ export class MoviesTableComponent implements OnInit, OnChanges {
 
   verFormulario() {
     console.log("form", this.movieForm);
+  }
+
+  setValueToArray(index: number) {
+    console.log("index", index);
+    // this.getMovieList.removeAt(index);
+    // this.movieForm.reset();
+    // this.movieForm.removeControl('title');
+    console.log("this.movieForm completo", this.movieForm);
+    console.log("this.movieForm raw", this.movieForm.getRawValue());
   }
 }

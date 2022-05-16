@@ -7,7 +7,7 @@ import {
   Output,
   SimpleChanges,
 } from "@angular/core";
-import { FormControl } from "@angular/forms";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { debounceTime, switchMap } from "rxjs/operators";
 import { MoviesService } from "@app-services/movies.service";
 
@@ -19,15 +19,31 @@ import { MoviesService } from "@app-services/movies.service";
 export class FormMoviesComponent implements OnChanges, OnInit {
   @Input() searching: boolean;
   @Output() searchMovieEmitter = new EventEmitter<string>();
-  movieTitle: FormControl;
+  movieForm: FormGroup;
 
-  constructor(private moviesService: MoviesService) {
-    this.movieTitle = new FormControl("");
+  constructor(private moviesService: MoviesService, private fb: FormBuilder) {
+    this.movieForm = this.fb.group({
+      title: ["", Validators.required],
+      subTitle: [""],
+      age: [""],
+      year: [""],
+    });
     this.searching = false;
   }
 
+  get getTitle() {
+    return this.movieForm.get("title");
+  }
+
+  /*get getSubTitle() {
+    return this.movieForm.get('subTitle')
+  }*/
+
   searchMovie() {
-    this.searchMovieEmitter.emit(this.movieTitle.value);
+    // this.getTitle.patchValue('Game of thrones');
+    // this.getSubTitle.patchValue('Test');
+    // this.movieForm.patchValue({title: '1', subTitle: '2', age: '3'})
+    this.searchMovieEmitter.emit(this.getTitle.value);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -38,7 +54,7 @@ export class FormMoviesComponent implements OnChanges, OnInit {
   }
 
   ngOnInit(): void {
-    this.movieTitle.valueChanges
+    this.movieForm.valueChanges
       .pipe(
         debounceTime(1000),
         switchMap((data) => {
@@ -46,7 +62,10 @@ export class FormMoviesComponent implements OnChanges, OnInit {
         })
       )
       .subscribe((data) => {
-        console.log("data", data);
+        console.log("valuechanges formulario completo", data);
       });
+    /*this.getTitle.valueChanges.subscribe(data=> {
+      console.log('data', data);
+    })*/
   }
 }
