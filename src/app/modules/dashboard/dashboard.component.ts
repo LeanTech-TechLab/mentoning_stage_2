@@ -11,9 +11,24 @@ export class DashboardComponent {
   movieList: MovieInterface[];
   favoriteShows: MovieInterface[];
   searchingMovie = false;
+  selectedColor: string;
+  today: Date;
+  data: any;
   constructor(private moviesService: MoviesService) {
     this.movieList = [];
     this.favoriteShows = [];
+    this.selectedColor = "orange";
+    this.today = new Date();
+    this.data = [
+      {
+        title: "Game of thrones",
+        type: "Serie",
+      },
+      {
+        title: "Dr Strange",
+        type: "Movie",
+      },
+    ];
   }
 
   searchMovie(movieTitle: string) {

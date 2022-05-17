@@ -1,5 +1,12 @@
 <div class="dashboard">
-  <h2>The movie list</h2>
+  <h2 appTextBgModificator [selectedColor]="selectedColor">
+    {{ data[0].type + ":" + data[0].title }}
+  </h2>
+  <h2>{{ data[0].title | modifyText: data[0].type }}</h2>
+  <h2>{{ data[1].title | modifyText: data[1].type }}</h2>
+  <h2>{{ "3104657678" | phoneFormat }}</h2>
+  <h2>{{ "456" | currency: "USD" }}</h2>
+  <h2>{{ "The movie list" | slice: 0:5 }}</h2>
   <div class="dashboard__form">
     <app-form-movies
       [searching]="searchingMovie"
